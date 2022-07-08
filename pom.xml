@@ -25,6 +25,12 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/org.json/json -->
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20220320</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
