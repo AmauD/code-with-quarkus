@@ -1,4 +1,4 @@
-package org.acme.model;
+package org.acme.rest.client;
 
 import java.util.Date;
 
@@ -20,5 +20,13 @@ public class ISSResponse {
 
     public void setLastExposedDate(Date lastExposedDate) {
         this.lastExposedDate = lastExposedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "ISSResponse{" +
+                "isExposed=" + isExposed +
+                ", lastExposedDate=" + lastExposedDate +
+                '}';
     }
 }

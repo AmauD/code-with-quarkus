@@ -1,4 +1,4 @@
-package org.acme.model;
+package org.acme.rest.client;
 
 import java.util.Date;
 
@@ -17,4 +17,7 @@ public class ISS {
     public float solar_lat;
     public float solar_lon;
     public String units;
+
+    public ISS() {
+    }
 }
