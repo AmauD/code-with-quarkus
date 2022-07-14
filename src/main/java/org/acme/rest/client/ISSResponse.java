@@ -24,9 +24,9 @@ public class ISSResponse {
 
     @Override
     public String toString() {
-        return "ISSResponse{" +
-                "isExposed=" + isExposed +
-                ", lastExposedDate=" + lastExposedDate +
-                '}';
+        return "{" +"\n"+
+                "\tisExposed: " + isExposed +",\n"+
+                "\tlastExposedDate: " + lastExposedDate +
+                "}";
     }
 }
