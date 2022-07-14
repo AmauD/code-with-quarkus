@@ -21,6 +21,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
+import java.util.Objects;
 import java.util.TimeZone;
 
 @Path("/iss")
@@ -30,18 +31,19 @@ public class IssRessource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response getExposition() {
+    public ISSResponse getExposition() {
 
         HttpClient client = HttpClient.newHttpClient();
         ISSResponse response = new ISSResponse();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ISS_URL)).build();
         JsonObject issValue = new JsonObject(client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body).join());
         Long timestampIss = issValue.getLong("timestamp");
-        System.out.println(timestampIss);
-//        Timestamp ts = new Timestamp(timestampIss);
+        String visibilityIss = issValue.getString("visibility");
+        if (Objects.equals(visibilityIss, "daylight")) {
+            response.setExposed(true);
+        }
         ZonedDateTime utc = Instant.ofEpochSecond(timestampIss).atZone(ZoneOffset.UTC);
-        System.out.println( DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss").format(utc));
         response.setLastExposedDate(Date.from(utc.toInstant()));
-        return Response.ok(response).build();
+        return response;
     }
 }
